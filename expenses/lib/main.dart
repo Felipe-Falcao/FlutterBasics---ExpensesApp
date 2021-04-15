@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:expenses/components/transaction_form.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
+// import 'package:flutter/services.dart';
 
 import 'components/chart.dart';
 
@@ -12,6 +13,10 @@ main() => runApp(ExpensesApp());
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitDown,
+    // ]);
+
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
