@@ -50,7 +50,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: 'tr1', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr2', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr3', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr4', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr5', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr6', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr7', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+    Transaction(
+        id: 'tr8', title: 'Conta de Luz', value: 200.00, date: DateTime.now()),
+  ];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -92,27 +109,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Despesas Pessoais',
-          style: TextStyle(
-            fontFamily: 'OpenSans',
-          ),
+    final appBar = AppBar(
+      title: Text(
+        'Despesas Pessoais',
+        style: TextStyle(
+          fontFamily: 'OpenSans',
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          )
-        ],
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        )
+      ],
+    );
+
+    final availableHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            Container(
+              height: availableHeight * 0.3,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: availableHeight * 0.7,
+              child: TransactionList(_transactions, _removeTransaction),
+            ),
           ],
         ),
       ),
